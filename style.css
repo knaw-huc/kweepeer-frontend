@@ -1,0 +1,30 @@
+body {
+    font-family: sans-serif;
+}
+
+div.kweepeer ul.modules {
+    list-style-type: none;
+}
+
+div.kweepeer ul.modules label {
+    font-weight: bold;
+}
+
+div.kweepeer ul.modules span.type {
+    font-size: 60%;
+    font-family: monospace;
+}
+
+div.kweepeer ul.expansions {
+    list-style-type: none;
+}
+div.kweepeer ul.expansions li {
+    display: inline-block;
+    font-style: italic;
+    padding-right: 10px;
+}
+
+div.kweepeer ul.sources>li>span {
+    font-weight: bold;
+    font-size: 60%;
+}

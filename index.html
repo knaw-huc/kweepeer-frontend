@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Kweepeer Frontend</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <script type="module" src="index.js"></script>
+        <label>Query:</label> <input type="text" name="q" id="q" /> <button id="expand" onclick="document.getElementById('kweepeer').expand(document.getElementById('q').value)">Expand</button>
+        <kweepeer-panel id="kweepeer" server="https://kweepeer.dev.huc.knaw.nl">
+        </kweepeer-panel>
+    </body>
+</html>
