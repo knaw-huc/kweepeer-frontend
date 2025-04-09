@@ -82,6 +82,9 @@ class QueryExpansionPanel extends HTMLElement {
                 termindex++;
             };
         }
+        if (this.textannoviz !== undefined && this.response !== null) {
+            s += `<button onclick="document.getElementById('kweepeer-query').click();">Run query</button>`;
+        }
         this.render(s);
 
 
