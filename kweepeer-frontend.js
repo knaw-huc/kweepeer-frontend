@@ -26,6 +26,13 @@ class QueryExpansionPanel extends HTMLElement {
 
     expand(querystring) {
         const xhttp = new XMLHttpRequest();
+        var excludedmodules = [];
+        this.modules.forEach(module => {
+            var e = document.getElementById("kweepeer-module-" + module.id);
+            if (e !== null && !e.checked) {
+                excludedmodules.push(module.id);
+            }
+        })
         xhttp.state = this;
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -35,7 +42,11 @@ class QueryExpansionPanel extends HTMLElement {
                 this.state.update();
             }
         }
-        xhttp.open("GET", encodeURI(this.server + "/?q=" + querystring), true);
+        if (excludedmodules.length > 0) {
+            xhttp.open("GET", encodeURI(this.server + "/?exclude=" + excludedmodules.join(",") + "&q=" + querystring), true);
+        } else {
+            xhttp.open("GET", encodeURI(this.server + "/?q=" + querystring), true);
+        }
         xhttp.send();
     }
 
