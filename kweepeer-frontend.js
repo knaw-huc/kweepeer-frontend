@@ -55,6 +55,8 @@ class QueryExpansionPanel extends HTMLElement {
             for (const [term, sources] of Object.entries(this.response.terms)) {
                 s += `<ol class="terms">
                          <li><span>${term}</span>
+                            <button data-term-index="${termindex}" data-beginterm="0" data-endterm="9999" class="selectall">+</button> 
+                            <button data-term-index="${termindex}" data-beginterm="0" data-endterm="9999" class="selectnone">-</button> 
                          <ul class="sources">
                 `;
                 var expansionindex = 0;
@@ -68,8 +70,8 @@ class QueryExpansionPanel extends HTMLElement {
                         expansionindex++;
                     });
                     s += `      <li><label>${source.source_name}</label>
-                                    <button data-source-id="${source.source_id}" data-term-index="${termindex}" data-beginterm="${beginindex}" data-endterm="${expansionindex}" class="selectall">+</button> 
-                                    <button data-source-id="${source.source_id}" data-term-index="${termindex}" data-beginterm="${beginindex}" data-endterm="${expansionindex}" class="selectnone">-</button> 
+                                    <button data-term-index="${termindex}" data-beginterm="${beginindex}" data-endterm="${expansionindex}" class="selectall">+</button> 
+                                    <button data-term-index="${termindex}" data-beginterm="${beginindex}" data-endterm="${expansionindex}" class="selectnone">-</button> 
                                     <ul class="expansions">
                                     ${s2}
                                     </ul>
@@ -173,6 +175,7 @@ function selectall(event) {
     var target = event.target;
     for (var i = target.dataset.beginterm; i < target.dataset.endterm; i++) {
         var e = document.getElementById(`term${target.dataset.termIndex}-${i}`);
+        if (e === null) break;
         e.checked = true;
     }
 }
@@ -181,6 +184,7 @@ function selectnone(event) {
     var target = event.target;
     for (var i = target.dataset.beginterm; i < target.dataset.endterm; i++) {
         var e = document.getElementById(`term${target.dataset.termIndex}-${i}`);
+        if (e === null) break;
         e.checked = false;
     }
 }
@@ -216,5 +220,5 @@ function query(state) {
         }
     }
     console.log("[kweeper] expanded query = " + query); 
-    window.location.assign(state.textannoviz + "/?query[fullText]=" + query);
+    window.location.assign(encodeURI(state.textannoviz + "/?query[fullText]=" + query));
 }
