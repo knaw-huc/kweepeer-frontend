@@ -24,7 +24,10 @@ div.kweepeer ul.expansions li {
     padding-right: 10px;
 }
 
-div.kweepeer ul.sources>li>span {
+div.kweepeer ul.sources>li>label {
     font-weight: bold;
+    font-size: 60%;
+}
+div.kweepeer ul.sources>li>button {
     font-size: 60%;
 }
